@@ -1,4 +1,4 @@
 package shared
 
 // Version ...
-const Version = "f78862728eafd929c510dd75da1266819c7d350cc453fae204514a07e0ce98b7"
+const Version = "cbef647f20f0d1e6c20101341ec04ec4"

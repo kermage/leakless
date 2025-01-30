@@ -1,10 +1,11 @@
 package utils
 
 import (
-	"crypto/sha256"
 	"hash"
 	"io"
 	"os"
+
+	"golang.org/x/crypto/blake2b"
 )
 
 type hasher struct {
@@ -26,7 +27,13 @@ func (h *hasher) hash(path string) error {
 }
 
 func HashFiles(paths []string) ([]byte, error) {
-	hasher := &hasher{sha256.New()}
+	h, err := blake2b.New(16, nil)
+
+	if err != nil {
+		return nil, err
+	}
+
+	hasher := &hasher{h}
 
 	for _, path := range paths {
 		if err := hasher.hash(path); err != nil {
